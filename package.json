@@ -3,6 +3,10 @@
   "devDependencies": {
     "nodemon": "^3.0.1"
   },
+  "scripts": {
+    "server": "nodemon server.js",
+    "start": "node server.js"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",

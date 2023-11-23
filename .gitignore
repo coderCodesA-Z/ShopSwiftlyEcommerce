@@ -9,6 +9,9 @@ node_modules/
 # Optional npm cache directory
 .npm
 
+# env files
+.env
+
 # Optional eslint cache
 .eslintcache
 
