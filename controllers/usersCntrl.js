@@ -3,20 +3,14 @@ import asyncHandler from "express-async-handler";
 import { emailRegex } from "../constants/emailRegex.js";
 import { passwordRegex } from "../constants/passwordRegex.js";
 import User from "../models/User.js";
+import createErrorObject from "../utils/createErrorObject.js";
 import generateToken from "../utils/generateToken.js";
+
+const BAD_REQUEST_CODE = 400;
 
 // @desc    Register user
 // @route   POST /api/v1/users/register
 // @access  Public
-
-const BAD_REQUEST_CODE = 400;
-
-function createErrorObject(error, message, statusCode) {
-	error.message = message;
-	error.status = statusCode;
-	return error;
-}
-
 export const registerUserCntrl = asyncHandler(async (req, res) => {
 	const { fullname, email, password } = req.body;
 
@@ -80,7 +74,6 @@ export const registerUserCntrl = asyncHandler(async (req, res) => {
 // @desc    Login user
 // @route   POST /api/v1/users/login
 // @access  Public
-
 export const loginUserCntrl = asyncHandler(async (req, res) => {
 	const { email, password } = req.body;
 	const error = new Error();
@@ -120,7 +113,6 @@ export const loginUserCntrl = asyncHandler(async (req, res) => {
 // @desc    Get user profile
 // @route   GET /api/v1/users/profile
 // @access  Private
-
 export const getUserProfileCntrl = asyncHandler(async (req, res) => {
 	const user = await User.findById(req.userAuthId);
 	res.status(200).json({
